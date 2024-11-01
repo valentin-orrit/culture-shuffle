@@ -7,10 +7,10 @@ import Answer from '../components/Answer'
 export default function HomePage() {
     // category list
     const [answers, setAnswers] = useState([
-        { id: 1, text: 'music', category: 12, on: false },
-        { id: 2, text: 'cinema', category: 11, on: false },
-        { id: 3, text: 'fine arts', category: 25, on: false },
-        { id: 4, text: 'literature', category: 10, on: false },
+        { id: 1, text: 'Music', category: 12, on: false },
+        { id: 2, text: 'Cinema', category: 11, on: false },
+        { id: 3, text: 'Fine Arts', category: 25, on: false },
+        { id: 4, text: 'Literature', category: 10, on: false },
     ])
 
     const [selectedCategory, setSelectedCategory] = useState(null)
@@ -52,13 +52,13 @@ export default function HomePage() {
             <Blobs />
 
             <div className="home--title">
-                <h1>culture shuffle</h1>
+                <h1>Culture Shuffle</h1>
                 <p>Are you a true art nerd? Find out in 10 questions.</p>
             </div>
 
             <form className="home--form">
                 <div className="home--chose-challenge">
-                    <p>choose your challenge</p>
+                    <p>Choose your challenge</p>
                 </div>
                 <div className="home--chose-btns">
                     {answers.map((answer) => (
@@ -75,7 +75,7 @@ export default function HomePage() {
                     onClick={startQuiz}
                     type="submit"
                 >
-                    start quiz
+                    Start quiz
                 </button>
                 <div>
                     {attemptedQuizStart && !selectedCategory && (

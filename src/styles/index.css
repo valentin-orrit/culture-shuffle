@@ -37,6 +37,8 @@ main {
     position: relative;
     z-index: 1;
     overflow: hidden;
+    padding: 0 10%;
+    margin: 0;
 }
 
 /* buttons */
@@ -70,6 +72,7 @@ h1 {
     margin-bottom: -10px;
     font-size: 2.5rem;
     margin-bottom: 1px;
+    text-align: center;
 }
 
 /* blobs */
@@ -108,12 +111,22 @@ h1 {
 .home--title p {
     font-size: 0.9rem;
     margin-top: -1px;
+    text-align: center;
 }
 
 .home--chose-challenge p {
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: -10px;
+    text-align: center;
+}
+
+.home--chose-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .home--form {
@@ -128,4 +141,8 @@ h1 {
     color: #e94528;
     position: absolute;
     left: 37%;
+}
+
+.quiz-question {
+    margin-bottom: 10px;
 }
