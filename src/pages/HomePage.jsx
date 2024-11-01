@@ -36,7 +36,7 @@ export default function HomePage() {
         e.preventDefault()
         setAttemptedQuizStart(true)
         if (selectedCategory) {
-            const url = `https://opentdb.com/api.php?amount=10&category=${selectedCategory}`
+            const url = `https://opentdb.com/api.php?amount=2&category=${selectedCategory}`
             try {
                 const response = await axios.get(url)
                 console.log('API Response:', response.data)

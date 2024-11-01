@@ -1,5 +1,5 @@
 // QuizPage.jsx
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { decode } from 'html-entities'
 import Blobs from '../components/Blobs'
@@ -11,6 +11,7 @@ export default function QuizPage() {
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [userAnswers, setUserAnswers] = useState([])
+    const navigate = useNavigate()
 
     if (!data) {
         return (
@@ -32,14 +33,14 @@ export default function QuizPage() {
         })
     }
 
+    // Handle next question and navigation to results page
     function handleNextQuestion() {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
         } else {
-            console.log('Quiz completed!', userAnswers)
-            //
-            // TO DO : redirect to results page
-            //
+            navigate('/results', {
+                state: { data: { userAnswers, questions } },
+            })
         }
     }
 
