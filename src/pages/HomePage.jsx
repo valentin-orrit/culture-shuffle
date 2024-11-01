@@ -1,32 +1,50 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
 import Blobs from '../components/Blobs'
 import Answer from '../components/Answer'
 
 export default function HomePage() {
-    const [active, setActive] = useState(false)
-
     // category list
-    const answers = [
+    const [answers, setAnswers] = useState([
         { id: 1, text: 'music', category: 12, on: false },
         { id: 2, text: 'cinema', category: 11, on: false },
         { id: 3, text: 'fine arts', category: 25, on: false },
         { id: 4, text: 'literature', category: 10, on: false },
-    ]
+    ])
 
-    function handleClick(e) {
+    const [selectedCategory, setSelectedCategory] = useState(null)
+    const [attemptedQuizStart, setAttemptedQuizStart] = useState(false)
+    const navigate = useNavigate()
+
+    function handleClick(e, id) {
         e.preventDefault()
-        setActive(!active)
-
-        console.log(active)
+        setAnswers((prevAnswers) => {
+            return prevAnswers.map((answer) => {
+                if (answer.id === id) {
+                    setSelectedCategory(answer.category)
+                    return { ...answer, on: true }
+                } else {
+                    return { ...answer, on: false }
+                }
+            })
+        })
     }
 
     // Starting the quiz
-    const navigate = useNavigate()
-
-    function startQuiz(e) {
+    async function startQuiz(e) {
         e.preventDefault()
-        navigate('/quiz')
+        setAttemptedQuizStart(true)
+        if (selectedCategory) {
+            const url = `https://opentdb.com/api.php?amount=10&category=${selectedCategory}`
+            try {
+                const response = await axios.get(url)
+                console.log('API Response:', response.data)
+                navigate('/quiz', { state: { data: response.data } })
+            } catch (error) {
+                console.error('Error fetching data:', error)
+            }
+        }
     }
 
     return (
@@ -48,7 +66,7 @@ export default function HomePage() {
                             key={answer.id}
                             on={answer.on}
                             text={answer.text}
-                            handleClick={() => handleClick(answer.id)}
+                            handleClick={(e) => handleClick(e, answer.id)}
                         />
                     ))}
                 </div>
@@ -57,8 +75,15 @@ export default function HomePage() {
                     onClick={startQuiz}
                     type="submit"
                 >
-                    start quiz!
+                    start quiz
                 </button>
+                <div>
+                    {attemptedQuizStart && !selectedCategory && (
+                        <div className="home--warning-message">
+                            <p>You need to select a challenge!</p>
+                        </div>
+                    )}
+                </div>
             </form>
         </main>
     )
