@@ -73,31 +73,6 @@ h1 {
     text-align: center;
 }
 
-/* blobs */
-.blob {
-    height: 100vh;
-    position: absolute;
-    width: 550px;
-    height: 550px;
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Top-right blob */
-.blob-top-right {
-    top: -15%;
-    left: 70%;
-    background-image: url('icons/blob1.svg');
-}
-
-/* Bottom-left blob */
-.blob-bottom-left {
-    bottom: -20%;
-    left: -20%;
-    background-image: url('icons/blob2.svg');
-    overflow: hidden;
-}
-
 /* homepage */
 .home--title {
     display: flex;

@@ -2,7 +2,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { decode } from 'html-entities'
-import Blobs from '../components/Blobs'
 import Answer from '../components/Answer'
 
 export default function QuizPage() {
@@ -16,7 +15,6 @@ export default function QuizPage() {
     if (!data) {
         return (
             <main>
-                <Blobs />
                 <p>Loading questions...</p>
             </main>
         )
@@ -46,7 +44,6 @@ export default function QuizPage() {
 
     return (
         <main>
-            <Blobs />
             <h1 className="home--title">Question {currentQuestionIndex + 1}</h1>
             <div className="home--chose-challenge quiz-question">
                 <p>

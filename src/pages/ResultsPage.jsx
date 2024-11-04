@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { decode } from 'html-entities'
-import Blobs from '../components/Blobs'
 import Answer from '../components/Answer'
 
 export default function ResultsPage() {
@@ -14,7 +13,6 @@ export default function ResultsPage() {
 
     return (
         <main>
-            <Blobs />
             <h1 className="home--title">Results</h1>
             <div className="results--questions">
                 {data?.questions?.map((question, index) => (

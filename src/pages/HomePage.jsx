@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-import Blobs from '../components/Blobs'
 import Answer from '../components/Answer'
 
 export default function HomePage() {
@@ -49,8 +48,6 @@ export default function HomePage() {
 
     return (
         <main>
-            <Blobs />
-
             <div className="home--title">
                 <h1>Culture Shuffle</h1>
                 <p>Are you a true art nerd? Find out in 5 questions.</p>
