@@ -37,7 +37,7 @@ export default function QuizPage() {
             setTimeout(() => {
                 setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
                 setIsTransitioning(false)
-            }, 300) // Match this duration with your CSS transition duration
+            }, 300)
         } else {
             navigate('/results', {
                 state: { data: { userAnswers, questions } },

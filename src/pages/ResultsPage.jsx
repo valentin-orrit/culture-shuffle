@@ -60,7 +60,7 @@ export default function ResultsPage() {
                                 .map((answer, answerIndex) => (
                                     <Answer
                                         key={answerIndex}
-                                        text={answer}
+                                        text={decode(answer)}
                                         isUserAnswer={
                                             answer === data.userAnswers[index]
                                         }
