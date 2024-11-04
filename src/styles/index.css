@@ -17,7 +17,7 @@ body,
     --yellow: #fff7aa;
     --brown: #994646;
     --gray: #7b746f;
-    --gray-disabled: #b9b1ac;
+    --gray-disabled: #aca8a6;
 
     --corner-radius: 35px;
 
@@ -37,6 +37,14 @@ main {
     z-index: 1;
     padding: 0 10%;
     margin: 0;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 251, 1) 60%,
+        rgba(255, 247, 170, 1) 75%,
+        rgba(255, 237, 127, 1) 86%,
+        rgba(255, 241, 97, 1) 92%,
+        rgba(255, 165, 94, 1) 100%
+    );
 }
 
 /* buttons */
@@ -127,6 +135,8 @@ hr {
     text-align: center;
 }
 
+/* Results page */
+
 .results--try-btn {
     margin: 0 20px;
 }
@@ -146,4 +156,11 @@ hr {
 .results--stats p {
     font-size: medium;
     font-weight: 600;
+}
+
+.results--title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
 }

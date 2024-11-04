@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { decode } from 'html-entities'
 import Answer from '../components/Answer'
+import confetti from 'canvas-confetti'
 
 export default function ResultsPage() {
     const location = useLocation()
@@ -11,22 +13,38 @@ export default function ResultsPage() {
         navigate('/')
     }
 
-    function stats() {
-        // Count the number of correct answers
-        return data.questions.reduce((count, question, index) => {
-            return (
-                count +
-                (data.userAnswers[index] === question.correct_answer ? 1 : 0)
-            )
-        }, 0)
+    function calculateScore() {
+        let score = 0
+        data.questions.forEach((question, index) => {
+            if (data.userAnswers[index] === question.correct_answer) {
+                score++
+            }
+        })
+        return score
     }
 
-    const testString = 'Bill &amp; Ted&#039;s Excellent Adventure'
-    console.log(decode(testString))
+    const score = calculateScore()
+
+    // Launch Confettis when the score is perfect
+    useEffect(() => {
+        if (score === 5) {
+            const launchConfetti = () => {
+                confetti({
+                    particleCount: 200,
+                    spread: 180,
+                    startVelocity: 40,
+                    ticks: 300,
+                    gravity: 0.6,
+                    scalar: 1.6,
+                })
+            }
+            launchConfetti()
+        }
+    }, [score])
 
     return (
         <main>
-            <h1 className="home--title">Results</h1>
+            <h1 className="results--title">Results</h1>
             <div className="results--questions">
                 {data.questions.map((question, index) => (
                     <div key={index} className="results--question-block">
@@ -42,7 +60,7 @@ export default function ResultsPage() {
                                 .map((answer, answerIndex) => (
                                     <Answer
                                         key={answerIndex}
-                                        text={decode(answer)}
+                                        text={answer}
                                         isUserAnswer={
                                             answer === data.userAnswers[index]
                                         }
@@ -58,9 +76,7 @@ export default function ResultsPage() {
                 ))}
             </div>
             <div className="results--stats">
-                <p>
-                    You scored {stats()}/{data.questions.length} questions !
-                </p>
+                <p>You scored {score}/5</p>
                 <button
                     className="home--start-btn big-btn results--try-btn"
                     onClick={newQuiz}

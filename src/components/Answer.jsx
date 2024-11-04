@@ -19,7 +19,7 @@ export default function Answer({
         borderColor: on
             ? '#d3852b'
             : isUserAnswer && isCorrectAnswer
-            ? '#4caf50' // Green for correct user answer
+            ? '#4caf50'
             : isUserAnswer
             ? '#d3852b'
             : isCorrectAnswer

@@ -38,7 +38,6 @@ export default function HomePage() {
             const url = `https://opentdb.com/api.php?amount=5&category=${selectedCategory}`
             try {
                 const response = await axios.get(url)
-                console.log('API Response:', response.data)
                 navigate('/quiz', { state: { data: response.data } })
             } catch (error) {
                 console.error('Error fetching data:', error)
