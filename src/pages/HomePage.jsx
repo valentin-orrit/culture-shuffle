@@ -36,7 +36,7 @@ export default function HomePage() {
         e.preventDefault()
         setAttemptedQuizStart(true)
         if (selectedCategory) {
-            const url = `https://opentdb.com/api.php?amount=2&category=${selectedCategory}`
+            const url = `https://opentdb.com/api.php?amount=5&category=${selectedCategory}`
             try {
                 const response = await axios.get(url)
                 console.log('API Response:', response.data)
@@ -53,7 +53,7 @@ export default function HomePage() {
 
             <div className="home--title">
                 <h1>Culture Shuffle</h1>
-                <p>Are you a true art nerd? Find out in 10 questions.</p>
+                <p>Are you a true art nerd? Find out in 5 questions.</p>
             </div>
 
             <form className="home--form">
@@ -67,6 +67,7 @@ export default function HomePage() {
                             on={answer.on}
                             text={answer.text}
                             handleClick={(e) => handleClick(e, answer.id)}
+                            isResultsPage={false}
                         />
                     ))}
                 </div>

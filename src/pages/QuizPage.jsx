@@ -71,6 +71,7 @@ export default function QuizPage() {
                             text={answer}
                             on={userAnswers[currentQuestionIndex] === answer}
                             handleClick={() => handleAnswerSelect(answer)}
+                            isResultsPage={false}
                         />
                     ))}
             </div>
