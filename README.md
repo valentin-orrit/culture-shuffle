@@ -2,7 +2,7 @@
 
 Culture quiz application made with React, using the Open Trivia API to offer questions about music, cinema, classical arts, and literature.
 
-Adapted from a final exercise of the React training from [Scrimba](https://v2.scrimba.com/), this application is my first attempt at creating a React app from scratch. This app has no backend, and I used React Router for routing.
+Adapted from the final project of the React training from [Scrimba](https://v2.scrimba.com/), this application is my first attempt at creating a React app from scratch. This app has no backend, and I used React Router for routing.
 
 The app has three pages:
 
