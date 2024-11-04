@@ -11,21 +11,29 @@ export default function ResultsPage() {
         navigate('/')
     }
 
+    function stats() {
+        // Count the number of correct answers
+        return data.questions.reduce((count, question, index) => {
+            return (
+                count +
+                (data.userAnswers[index] === question.correct_answer ? 1 : 0)
+            )
+        }, 0)
+    }
+
+    const testString = 'Bill &amp; Ted&#039;s Excellent Adventure'
+    console.log(decode(testString))
+
     return (
         <main>
             <h1 className="home--title">Results</h1>
             <div className="results--questions">
-                {data?.questions?.map((question, index) => (
+                {data.questions.map((question, index) => (
                     <div key={index} className="results--question-block">
                         <div className="quiz-question">
-                            <p>
-                                {decode(question.question, {
-                                    level: 'html5',
-                                    mode: 'nonAscii',
-                                })}
-                            </p>
+                            <p>{decode(question.question)}</p>
                         </div>
-                        <div className="home--chose-btns">
+                        <div className="home--chose-btns results--answer-btn">
                             {[
                                 ...question.incorrect_answers,
                                 question.correct_answer,
@@ -34,7 +42,7 @@ export default function ResultsPage() {
                                 .map((answer, answerIndex) => (
                                     <Answer
                                         key={answerIndex}
-                                        text={answer}
+                                        text={decode(answer)}
                                         isUserAnswer={
                                             answer === data.userAnswers[index]
                                         }
@@ -45,12 +53,21 @@ export default function ResultsPage() {
                                     />
                                 ))}
                         </div>
+                        <hr />
                     </div>
                 ))}
             </div>
-            <button className="home--start-btn big-btn" onClick={newQuiz}>
-                Try again
-            </button>
+            <div className="results--stats">
+                <p>
+                    You scored {stats()}/{data.questions.length} questions !
+                </p>
+                <button
+                    className="home--start-btn big-btn results--try-btn"
+                    onClick={newQuiz}
+                >
+                    Try again
+                </button>
+            </div>
         </main>
     )
 }

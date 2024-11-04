@@ -73,6 +73,11 @@ h1 {
     text-align: center;
 }
 
+hr {
+    border: 1px solid #d8d8d8;
+    border-top: none;
+}
+
 /* homepage */
 .home--title {
     display: flex;
@@ -90,7 +95,7 @@ h1 {
 .home--chose-challenge p {
     font-size: 1.2rem;
     font-weight: 500;
-    margin-bottom: -10px;
+    margin-bottom: -5px;
     text-align: center;
 }
 
@@ -100,6 +105,7 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: -10px;
 }
 
 .home--form {
@@ -118,4 +124,26 @@ h1 {
 
 .quiz-question {
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.results--try-btn {
+    margin: 0 20px;
+}
+
+.results--answer-btn {
+    margin: -15px;
+}
+
+.results--stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.results--stats p {
+    font-size: medium;
+    font-weight: 600;
 }

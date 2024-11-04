@@ -49,10 +49,7 @@ export default function QuizPage() {
                 <p>
                     {
                         // decode html entities
-                        decode(currentQuestion.question, {
-                            level: 'html5',
-                            mode: 'nonAscii',
-                        })
+                        decode(currentQuestion.question)
                     }
                 </p>
             </div>
@@ -65,7 +62,7 @@ export default function QuizPage() {
                     .map((answer, index) => (
                         <Answer
                             key={index}
-                            text={answer}
+                            text={decode(answer)}
                             on={userAnswers[currentQuestionIndex] === answer}
                             handleClick={() => handleAnswerSelect(answer)}
                             isResultsPage={false}
