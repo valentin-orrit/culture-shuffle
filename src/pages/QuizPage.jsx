@@ -1,4 +1,3 @@
-// QuizPage.jsx
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { decode } from 'html-entities'
@@ -10,6 +9,7 @@ export default function QuizPage() {
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [userAnswers, setUserAnswers] = useState([])
+    const [isTransitioning, setIsTransitioning] = useState(false)
     const navigate = useNavigate()
 
     if (!data) {
@@ -31,10 +31,13 @@ export default function QuizPage() {
         })
     }
 
-    // Handle next question and navigation to results page
     function handleNextQuestion() {
         if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
+            setIsTransitioning(true)
+            setTimeout(() => {
+                setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
+                setIsTransitioning(false)
+            }, 300) // Match this duration with your CSS transition duration
         } else {
             navigate('/results', {
                 state: { data: { userAnswers, questions } },
@@ -45,29 +48,32 @@ export default function QuizPage() {
     return (
         <main>
             <h1 className="home--title">Question {currentQuestionIndex + 1}</h1>
-            <div className="home--chose-challenge quiz-question">
-                <p>
-                    {
-                        // decode html entities
-                        decode(currentQuestion.question)
-                    }
-                </p>
-            </div>
-            <div className="home--chose-btns">
-                {[
-                    ...currentQuestion.incorrect_answers,
-                    currentQuestion.correct_answer,
-                ]
-                    .sort()
-                    .map((answer, index) => (
-                        <Answer
-                            key={index}
-                            text={decode(answer)}
-                            on={userAnswers[currentQuestionIndex] === answer}
-                            handleClick={() => handleAnswerSelect(answer)}
-                            isResultsPage={false}
-                        />
-                    ))}
+            <div
+                className={`quiz-container ${
+                    isTransitioning ? 'slide-out' : 'slide-in'
+                }`}
+            >
+                <div className="home--chose-challenge quiz-question">
+                    <p>{decode(currentQuestion.question)}</p>
+                </div>
+                <div className="home--chose-btns">
+                    {[
+                        ...currentQuestion.incorrect_answers,
+                        currentQuestion.correct_answer,
+                    ]
+                        .sort()
+                        .map((answer, index) => (
+                            <Answer
+                                key={index}
+                                text={decode(answer)}
+                                on={
+                                    userAnswers[currentQuestionIndex] === answer
+                                }
+                                handleClick={() => handleAnswerSelect(answer)}
+                                isResultsPage={false}
+                            />
+                        ))}
+                </div>
             </div>
             <button
                 className="home--start-btn big-btn"

@@ -86,6 +86,24 @@ hr {
     border-top: none;
 }
 
+/* Quiz questions Animation */
+.quiz-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-in {
+    transform: translateY(0%);
+    opacity: 1;
+    transition: transform 0.2s ease-in, opacity 0.2s ease-in;
+}
+
+.slide-out {
+    transform: translateY(30%);
+    opacity: 0;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
 /* homepage */
 .home--title {
     display: flex;
