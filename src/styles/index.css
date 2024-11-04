@@ -48,6 +48,18 @@ main {
 }
 
 /* buttons */
+@keyframes buttonClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .big-btn {
     margin-top: 50px;
     padding: 15px 40px;
@@ -57,6 +69,15 @@ main {
     color: var(--white);
     font-size: 1.25rem;
     cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.big-btn:hover {
+    background-color: #479661;
+}
+
+.big-btn:active {
+    animation: buttonClick 0.3s ease;
 }
 
 .small-btn {
